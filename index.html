@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrIM - Nigerian Craft Furniture</title>
+    <meta name="description"
+        content="TrIM creates bespoke furniture handcrafted in Lagos, Nigeria. Premium hardwoods, centuries-old techniques, contemporary design. Begin your project today.">
+    <meta property="og:title" content="TrIM — Nigerian Craft Furniture">
+    <meta property="og:description"
+        content="Bespoke furniture handcrafted in Lagos with centuries-old techniques and contemporary design.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ========================================
+       1. RESET & BASE
+       ======================================== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            font-weight: 300;
+            color: #5C3D2E;
+            background-color: var(--warm-white);
+            background-image:
+                radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.5) 0%, transparent 70%),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        /* ========================================
+       2. DESIGN TOKENS
+       ======================================== */
+        :root {
+            --warm-white: #FAF7F2;
+            --terracotta: #A0674A;
+            --terracotta-hover: #8B573D;
+            --bark: #5C3D2E;
+            --gold: #B8975A;
+            --sand: #E8DDD0;
+            --sand-light: #F0E8DE;
+
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Jost', sans-serif;
+
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+
+            --shadow-sm: 0 2px 8px rgba(92, 61, 46, 0.06);
+            --shadow-md: 0 4px 24px rgba(92, 61, 46, 0.08);
+            --shadow-lg: 0 8px 40px rgba(92, 61, 46, 0.12);
+
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --container: 1280px;
+        }
+
+        /* ========================================
+       3. TYPOGRAPHY
+       ======================================== */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-heading);
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--bark);
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw + 1rem, 5.5rem);
+            letter-spacing: -0.02em;
+        }
+
+        h2 {
+            font-size: clamp(2.25rem, 4vw + 0.5rem, 4rem);
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            font-size: clamp(1.25rem, 2vw + 0.25rem, 1.75rem);
+        }
+
+        p {
+            font-weight: 300;
+            color: rgba(92, 61, 46, 0.82);
+        }
+
+        /* ========================================
+       4. LAYOUT
+       ======================================== */
+        .container {
+            width: 100%;
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: clamp(4rem, 8vw, 8rem) 0;
+        }
+
+        .section-label {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 1.25rem;
+            display: block;
+        }
+
+        .section-heading {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            max-width: 560px;
+            color: rgba(92, 61, 46, 0.7);
+        }
+
+        /* ========================================
+       5. NAVIGATION
+       ======================================== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 0;
+            transition: var(--transition);
+            background: linear-gradient(to bottom, rgba(250, 247, 242, 1) 0%, rgba(250, 247, 242, 0.5) 70%, transparent 100%);
+        }
+
+        .nav.scrolled {
+            background: rgba(250, 247, 242, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: var(--shadow-sm);
+            padding: 0.75rem 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            height: 36px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #5C3D2E;
+            transition: color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            padding-bottom: 4px;
+        }
+
+        .nav-links a.active, .nav-links a:active {
+            color: #A0674A;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--terracotta);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .nav-links a:hover {
+            color: var(--bark);
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-cta, .nav-links a.nav-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: fit-content;
+            padding: 0.7rem 1.5rem;
+            color: var(--warm-white) !important;
+            background: var(--bark);
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: var(--radius-sm);
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--terracotta);
+            transform: translateY(-1px);
+        }
+
+        .nav-cta::after {
+            display: none;
+        }
+
+        /* Mobile Nav */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 1.5px;
+            background: var(--bark);
+            transition: var(--transition);
+        }
+
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(250, 247, 242, 0.98);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-overlay.active {
+            display: flex;
+        }
+
+        .nav-overlay a {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--bark);
+            transition: color 0.3s;
+        }
+
+        .nav-overlay a:hover {
+            color: var(--terracotta);
+        }
+
+        /* ========================================
+       6. HERO
+       ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            padding-top: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 3rem 1.5rem;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-heading);
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--terracotta);
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--terracotta);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            color: #5C3D2E;
+        }
+
+        .hero-btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-cta-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: fit-content;
+            padding: 0.7rem 1.5rem;
+            background: transparent;
+            color: #2C2420;
+            border: 1px solid #5C3D2E;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s;
+        }
+
+        .nav-cta-outline:hover {
+            background: var(--bark);
+            color: var(--warm-white);
+        }
+
+        .hero-graphics {
+            display: flex;
+            gap: 1rem;
+            height: 50vh;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            margin: 0 1.5rem 3rem 1.5rem;
+            transform: rotate(8deg) scale(1.2);
+            transform-origin: center center;
+        }
+
+        .hero-col {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+        }
+
+        .hero-col-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .hero-col-inner img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+
+        .hero-col-up {
+            animation: scrollUp 30s linear infinite;
+        }
+
+        .hero-col-down {
+            animation: scrollDown 30s linear infinite;
+        }
+
+        @keyframes scrollUp {
+            0% {
+                transform: translateY(0);
+            }
+
+            100% {
+                transform: translateY(-50%);
+            }
+        }
+
+        @keyframes scrollDown {
+            0% {
+                transform: translateY(-50%);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .hero-scroll {
+            display: none;
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gold);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .hero-scroll svg {
+            width: 20px;
+            height: 20px;
+            animation: scrollBounce 2s infinite;
+        }
+
+        @keyframes scrollBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(6px);
+            }
+        }
+
+        /* ========================================
+       7. ABOUT
+       ======================================== */
+        .about {
+            background: var(--sand-light);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+
+        .about-quote {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            font-style: italic;
+            font-weight: 300;
+            color: var(--bark);
+            border-left: 2px solid var(--terracotta);
+            padding-left: 1.5rem;
+            margin: 3rem 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .about-image {
+            position: relative;
+            overflow: visible;
+            border-radius: var(--radius-md);
+            z-index: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+        }
+
+        .about-image::after {
+            content: '';
+            position: absolute;
+            inset: 1.5rem -1.5rem -1.5rem 1.5rem;
+            border: 1px solid var(--gold);
+            border-radius: var(--radius-md);
+            pointer-events: none;
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        /* ========================================
+       8. PORTFOLIO
+       ======================================== */
+        .portfolio-header {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .portfolio-header .section-heading {
+            margin-bottom: 0;
+        }
+
+        .portfolio-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.25rem;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(92, 61, 46, 0.6);
+            border: 1px solid rgba(92, 61, 46, 0.15);
+            border-radius: 100px;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: var(--warm-white);
+            background: var(--terracotta);
+            border-color: var(--terracotta);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: transform var(--transition);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.04);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 1.5rem;
+            background: linear-gradient(to top, rgba(92, 61, 46, 0.85) 0%, transparent 100%);
+            color: var(--warm-white);
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.4s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            color: var(--warm-white);
+            font-size: 1.35rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .portfolio-overlay .portfolio-tag {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* ========================================
+       9. PROCESS
+       ======================================== */
+        .process {
+            background: var(--sand-light);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .process-number {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--gold);
+            opacity: 0.4;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .process-step p {
+            max-width: 340px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+        }
+
+        .process-line {
+            display: none;
+            position: absolute;
+            top: 2rem;
+            right: -1.5rem;
+            width: 3rem;
+            height: 1px;
+            background: var(--gold);
+            opacity: 0.3;
+        }
+
+        /* ========================================
+       10. TESTIMONIALS
+       ======================================== */
+        .testimonials-track {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 1rem 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .testimonials-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .testimonial-card {
+            flex: 0 0 90%;
+            scroll-snap-align: start;
+            background: rgba(250, 247, 242, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: var(--shadow-sm);
+            border-radius: var(--radius-md);
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .testimonial-quote {
+            position: absolute;
+            top: 1.5rem;
+            left: 2rem;
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .testimonial-card p {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.7;
+            color: var(--bark);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: rgba(92, 61, 46, 0.7);
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .testimonial-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--sand);
+            border: 1px solid rgba(92, 61, 46, 0.2);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .testimonial-dot.active {
+            background: var(--terracotta);
+            border-color: var(--terracotta);
+        }
+
+        /* ========================================
+       11. CONTACT
+       ======================================== */
+        .contact {
+            background: var(--sand-light);
+            padding: 100px 80px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            margin-top: 2.5rem;
+        }
+
+        .contact-info {
+            padding-top: 0;
+            margin-top: 0;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            color: #5C3D2E;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: #5C3D2E;
+        }
+
+        .contact-detail svg {
+            width: 18px;
+            height: 18px;
+            color: var(--terracotta);
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: #FAF7F2;
+            padding: 0 2.5rem 2.5rem;
+            margin-top: 0;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-row {
+            display: grid;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: #5C3D2E;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.85rem 0;
+            border: none;
+            border-bottom: 1px solid #D4B896;
+            border-radius: 0;
+            background: transparent;
+            color: var(--bark);
+            font-weight: 300;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+
+        .form-group select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23A0674A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0 center;
+            background-size: 1.25em;
+            padding-right: 2rem;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-bottom-color: var(--terracotta);
+            box-shadow: 0 1px 0 0 var(--terracotta);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--terracotta);
+            color: var(--warm-white);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .form-submit:hover {
+            background: var(--terracotta-hover);
+            transform: translateY(-1px);
+        }
+
+        .form-success,
+        .form-error {
+            display: none;
+            padding: 1rem;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .form-success {
+            background: rgba(160, 103, 74, 0.1);
+            color: var(--terracotta);
+        }
+
+        .form-error {
+            background: rgba(160, 80, 74, 0.1);
+            color: #9E4A42;
+        }
+
+        /* Honeypot */
+        .ohnohoney {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+        }
+
+        /* ========================================
+       12. FOOTER
+       ======================================== */
+        .footer {
+            background: var(--bark);
+            color: var(--sand);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .footer-tagline {
+            font-size: 0.85rem;
+            color: rgba(232, 221, 208, 0.6);
+            letter-spacing: 0.08em;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(232, 221, 208, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--terracotta);
+            border-color: var(--terracotta);
+        }
+
+        .footer-social svg {
+            width: 16px;
+            height: 16px;
+            color: var(--sand);
+        }
+
+        .footer-bottom {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(232, 221, 208, 0.1);
+            font-size: 0.8rem;
+            color: rgba(232, 221, 208, 0.4);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 44px;
+            height: 44px;
+            background: var(--terracotta);
+            color: var(--warm-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            z-index: 900;
+            cursor: pointer;
+            border: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            background: var(--terracotta-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+       13. ANIMATIONS
+       ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-clip {
+            opacity: 0;
+            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+            transform: translateY(20px);
+            transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 1s cubic-bezier(0.25, 1, 0.5, 1),
+                clip-path 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal-clip.revealed {
+            opacity: 1;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        /* ========================================
+       14. RESPONSIVE — 768px
+       ======================================== */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 3rem;
+            }
+
+            .hero {
+                grid-template-columns: 55% 45%;
+                min-height: 100vh;
+                padding-top: 0;
+            }
+
+            .hero-content {
+                padding: 6rem 4rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+            }
+
+            .hero-graphics {
+                height: 100vh;
+                margin: 0 2rem 0 0;
+                padding: 2rem 0;
+                gap: 1.5rem;
+            }
+
+            .hero-col-inner {
+                gap: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .hero-col-inner img {
+                height: 350px;
+                border-radius: var(--radius-lg);
+            }
+
+            .hero-scroll {
+                display: flex;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .about-quote {
+                transform: translateX(4rem);
+                margin: 4rem 0;
+            }
+
+            .about-image img {
+                height: 100%;
+                min-height: 400px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .portfolio-item:first-child {
+                grid-row: span 2;
+            }
+
+            .portfolio-item:first-child img {
+                height: 100%;
+                min-height: 660px;
+            }
+
+            .portfolio-header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: flex-end;
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .process-line {
+                display: block;
+            }
+
+            .process-step:last-child .process-line {
+                display: none;
+            }
+
+            .testimonial-card {
+                flex: 0 0 46%;
+                padding: 3rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr 1.4fr;
+                gap: 80px;
+                align-items: start;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ========================================
+       15. RESPONSIVE — 1280px
+       ======================================== */
+        @media (min-width: 1280px) {
+            .hero-content {
+                padding: 6rem 6rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .portfolio-item img {
+                height: 380px;
+            }
+
+            .portfolio-item:first-child img {
+                min-height: 780px;
+            }
+
+            .testimonial-card {
+                flex: 0 0 32%;
+            }
+        }
+
+        /* ========================================
+       16. REDUCED MOTION
+       ======================================== */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            .portfolio-item:hover img {
+                transform: none;
+            }
+
+            .hero-scroll svg {
+                animation: none;
+            }
+
+            .hero-col-up,
+            .hero-col-down {
+                animation: none;
+                transform: translateY(0);
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+            }
+        }
+
+        /* ========================================
+       17. MOBILE NAV
+       ======================================== */
+        @media (max-width: 767px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-toggle {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ================================
+         NAVIGATION
+         ================================ -->
+    <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+        <div class="container nav-inner">
+            <a href="#" class="nav-logo" aria-label="TrIM Home"><img src="assets/images/Logo brown .png"
+                    alt="TrIM logo"></a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#process">Process</a>
+                <a href="#contact" class="nav-cta">Get in touch</a>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Overlay -->
+    <div class="nav-overlay" id="navOverlay" role="dialog" aria-label="Mobile menu">
+        <a href="#about" class="nav-overlay-link">About</a>
+        <a href="#portfolio" class="nav-overlay-link">Portfolio</a>
+        <a href="#process" class="nav-overlay-link">Process</a>
+        <a href="#testimonials" class="nav-overlay-link">Testimonials</a>
+        <a href="#contact" class="nav-overlay-link">Work With Us</a>
+    </div>
+
+    <!-- ================================
+         HERO
+         ================================ -->
+    <header class="hero" id="hero">
+        <div class="hero-content">
+            <!--
+             <span class="hero-eyebrow reveal">Bespoke Furniture — Lagos, Nigeria</span> 
+            -->
+            <h1 class="reveal reveal-delay-1">Where Nigerian <em>Craft</em> Meets Modern Living</h1>
+            <p class="hero-desc reveal reveal-delay-2">Handcrafted from premium African hardwoods using <br>
+                centuries-old
+                techniques and contemporary design sensibility. Each piece, a legacy.</p>
+            <div class="hero-btn-group reveal reveal-delay-3">
+                <a href="#contact" class="nav-cta">
+                    Work With Us
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="1.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="#portfolio" class="nav-cta-outline">
+                    See Our Work
+                </a>
+            </div>
+        </div>
+        <div class="hero-graphics">
+            <div class="hero-col hero-col-down">
+                <div class="hero-col-inner">
+                    <img src="assets/images/portfolio-1.png" alt="Dining Table">
+                    <img src="assets/images/portfolio-3.png" alt="Lounge Chair">
+                    <img src="assets/images/hero.png" alt="Crafted Wood">
+                </div>
+                <div class="hero-col-inner" aria-hidden="true">
+                    <img src="assets/images/portfolio-1.png" alt="Dining Table">
+                    <img src="assets/images/portfolio-3.png" alt="Lounge Chair">
+                    <img src="assets/images/hero.png" alt="Crafted Wood">
+                </div>
+            </div>
+            <div class="hero-col hero-col-up">
+                <div class="hero-col-inner">
+                    <img src="assets/images/about.png" alt="Workshop">
+                    <img src="assets/images/portfolio-2.png" alt="Sideboard">
+                    <img src="assets/images/portfolio-4.png" alt="Bed Frame">
+                </div>
+                <div class="hero-col-inner" aria-hidden="true">
+                    <img src="assets/images/about.png" alt="Workshop">
+                    <img src="assets/images/portfolio-2.png" alt="Sideboard">
+                    <img src="assets/images/portfolio-4.png" alt="Bed Frame">
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+        </div>
+    </header>
+
+    <!-- ================================
+         ABOUT
+         ================================ -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <span class="section-label reveal">Our Story</span>
+                    <h2 class="section-heading reveal reveal-delay-1">The Art of Nigerian&nbsp;Craft</h2>
+                    <p class="reveal reveal-delay-2">Every piece of TrIM furniture tells a story — of ancient forests,
+                        of hands that know the grain of iroko and sapele like old friends, of a tradition that refuses
+                        to be forgotten.</p>
+                    <p class="reveal reveal-delay-2">Founded in Lagos, TrIM was born from a simple conviction: that
+                        Nigerian craftsmanship deserves to stand alongside the finest furniture traditions in the world.
+                        Our artisans bring decades of experience to every commission, working premium hardwoods with
+                        techniques passed down through generations.</p>
+                    <blockquote class="about-quote reveal reveal-delay-3">&ldquo;The wood remembers the hands that
+                        shaped&nbsp;it.&rdquo;</blockquote>
+                    <p class="reveal reveal-delay-3">We don&rsquo;t mass-produce. We don&rsquo;t cut corners. Each piece
+                        is designed in conversation with you, shaped by master hands, and finished to a standard that
+                        will endure for decades.</p>
+                </div>
+                <div class="about-image reveal-clip">
+                    <img src="assets/images/about.png"
+                        alt="Master craftsman's hands carving intricate details into rich dark iroko wood in a sunlit Nigerian furniture workshop"
+                        loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================
+         PORTFOLIO
+         ================================ -->
+    <section class="section" id="portfolio">
+        <div class="container">
+            <div class="portfolio-header">
+                <div>
+                    <span class="section-label reveal">Selected Works</span>
+                    <h2 class="section-heading reveal reveal-delay-1">Crafted with Intention</h2>
+                </div>
+                <div class="portfolio-filters reveal reveal-delay-2">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="dining">Dining</button>
+                    <button class="filter-btn" data-filter="living">Living</button>
+                    <button class="filter-btn" data-filter="bedroom">Bedroom</button>
+                    <button class="filter-btn" data-filter="office">Office</button>
+                </div>
+            </div>
+            <div class="portfolio-grid" id="portfolioGrid">
+                <div class="portfolio-item reveal-clip" data-category="dining">
+                    <img src="assets/images/portfolio-1.png"
+                        alt="The Heritage Table — a large handcrafted iroko wood dining table with elegant brass inlay details and tapered legs"
+                        loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>The Heritage Table</h3>
+                        <span class="portfolio-tag">Dining · Iroko Wood &amp; Brass</span>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal-clip reveal-delay-1" data-category="living">
+                    <img src="assets/images/portfolio-2.png"
+                        alt="The Artisan Chair — a sculpted modern lounge armchair with rich full-grain cognac leather and solid walnut frame"
+                        loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>The Artisan Chair</h3>
+                        <span class="portfolio-tag">Living · Leather &amp; Walnut</span>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal-clip reveal-delay-2" data-category="living">
+                    <img src="assets/images/portfolio-3.png"
+                        alt="The Curator's Shelf — a tall floor-to-ceiling handcrafted mahogany bookshelf with asymmetric shelving and brass bracket details"
+                        loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>The Curator&rsquo;s Shelf</h3>
+                        <span class="portfolio-tag">Living · Mahogany</span>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal-clip" data-category="living">
+                    <img src="assets/images/portfolio-4.png"
+                        alt="The Brass Console — a sleek minimalist console table made of sapele wood with hand-forged brass inlay"
+                        loading="lazy">
+                    <div class="portfolio-overlay">
+                        <h3>The Brass Console</h3>
+                        <span class="portfolio-tag">Living · Sapele &amp; Brass</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================
+         PROCESS
+         ================================ -->
+    <section class="section process" id="process">
+        <div class="container">
+            <div style="text-align: center;">
+                <span class="section-label reveal">How We Work</span>
+                <h2 class="section-heading reveal reveal-delay-1">Your Vision, Our&nbsp;Hands</h2>
+            </div>
+            <div class="process-grid">
+                <div class="process-step reveal">
+                    <div class="process-number">01</div>
+                    <h3>Design</h3>
+                    <p>We begin with your vision. Through careful consultation, we sketch, refine, and perfect every
+                        detail — from proportions to joinery, from timber selection to finish.</p>
+                    <div class="process-line"></div>
+                </div>
+                <div class="process-step reveal reveal-delay-1">
+                    <div class="process-number">02</div>
+                    <h3>Craft</h3>
+                    <p>Our workshop comes alive. Master artisans shape premium Nigerian hardwoods — iroko, sapele,
+                        mahogany — using time-honoured techniques and modern precision tools.</p>
+                    <div class="process-line"></div>
+                </div>
+                <div class="process-step reveal reveal-delay-2">
+                    <div class="process-number">03</div>
+                    <h3>Deliver</h3>
+                    <p>Each completed piece undergoes rigorous quality inspection before being delivered to your space
+                        with white-glove care and full installation support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================
+         TESTIMONIALS
+         ================================ -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <span class="section-label reveal">Client Stories</span>
+            <h2 class="section-heading reveal reveal-delay-1">What Our Clients&nbsp;Say</h2>
+            <div class="testimonials-track" id="testimonialsTrack">
+                <div class="testimonial-card">
+                    <span class="testimonial-quote">&ldquo;</span>
+                    <p>TrIM didn&rsquo;t just build us a dining table — they created the centrepiece of our home. The
+                        iroko grain is absolutely stunning, and two years later, it still takes our breath away every
+                        single day.</p>
+                    <div class="testimonial-author">— Adaeze &amp; Chidi Okonkwo, Lagos</div>
+                </div>
+                <div class="testimonial-card">
+                    <span class="testimonial-quote">&ldquo;</span>
+                    <p>Working with TrIM was effortless. They understood our aesthetic immediately and delivered a
+                        complete living room suite that exceeded every expectation. True artisans with an eye for the
+                        contemporary.</p>
+                    <div class="testimonial-author">— Emeka Nnaji, Abuja</div>
+                </div>
+                <div class="testimonial-card">
+                    <span class="testimonial-quote">&ldquo;</span>
+                    <p>I wanted something that honoured Nigerian craft but felt completely contemporary. The custom
+                        bookshelf TrIM created is the most beautiful piece of furniture I own. Worth every kobo.</p>
+                    <div class="testimonial-author">— Folake Adeyemi, Port Harcourt</div>
+                </div>
+            </div>
+            <div class="testimonial-dots" id="testimonialDots">
+                <button class="testimonial-dot active" data-slide="0" aria-label="View testimonial 1"></button>
+                <button class="testimonial-dot" data-slide="1" aria-label="View testimonial 2"></button>
+                <button class="testimonial-dot" data-slide="2" aria-label="View testimonial 3"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================
+         CONTACT
+         ================================ -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <span class="section-label reveal">Get In Touch</span>
+            <h2 class="section-heading reveal reveal-delay-1">Begin Your&nbsp;Project</h2>
+            <p class="section-subtitle reveal reveal-delay-2">Every great space starts with a conversation. Tell us
+                about your vision, and we&rsquo;ll bring it to life.</p>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3>Let&rsquo;s Talk</h3>
+                    <p>Whether you have a detailed brief or just the seed of an idea, we&rsquo;d love to hear from you.
+                        Our design team responds to every enquiry within 24&nbsp;hours.</p>
+                    <div class="contact-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <span>hello@trimfurniture.com</span>
+                    </div>
+                    <div class="contact-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path
+                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11 11 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        <span>+234 (0) 812 345 6789</span>
+                    </div>
+                    <div class="contact-detail">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span>Victoria Island, Lagos, Nigeria</span>
+                    </div>
+                </div>
+                <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/xlgonyza"
+                    method="POST">
+                    <!-- Honeypot for spam prevention -->
+                    <input type="text" name="_gotcha" class="ohnohoney" tabindex="-1" autocomplete="off">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Your full name"
+                                autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com"
+                                autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone (Optional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+234..." autocomplete="tel">
+                        </div>
+                        <div class="form-group">
+                            <label for="project_type">Project Type *</label>
+                            <select id="project_type" name="project_type" required>
+                                <option value="" disabled selected>Select a category</option>
+                                <option value="Dining">Dining</option>
+                                <option value="Living">Living</option>
+                                <option value="Bedroom">Bedroom</option>
+                                <option value="Office">Office</option>
+                                <option value="Custom Piece">Custom Piece</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group" style="grid-column: 1 / -1;">
+                            <label for="budget">Budget Range (Optional)</label>
+                            <select id="budget" name="budget">
+                                <option value="" disabled selected>Select a range</option>
+                                <option value="Under ₦500K">Under ₦500K</option>
+                                <option value="₦500K – ₦2M">₦500K – ₦2M</option>
+                                <option value="₦2M – ₦5M">₦2M – ₦5M</option>
+                                <option value="₦5M+">₦5M+</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="message">Tell Us About Your Project *</label>
+                        <textarea id="message" name="message" required
+                            placeholder="Describe your vision — materials, dimensions, style, timeline..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit" id="formSubmit">Send Enquiry</button>
+                    <div class="form-success" id="formSuccess">Thank you! Your enquiry has been received. We&rsquo;ll be
+                        in touch within 24 hours.</div>
+                    <div class="form-error" id="formError">Something went wrong. Please try again or email us directly.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================
+         FOOTER
+         ================================ -->
+    <footer class="footer" id="footer">
+        <div class="container footer-inner">
+            <div class="footer-logo"><img src="assets/images/Logo Dark.png" alt="TrIM logo"></div>
+            <div class="footer-tagline">Nigerian Craft Furniture</div>
+            <div class="footer-social">
+                <a href="#" aria-label="Instagram">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="2" width="20" height="20" rx="5" />
+                        <circle cx="12" cy="12" r="5" />
+                        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                    </svg>
+                </a>
+                <a href="#" aria-label="Pinterest">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12c0 4.08 2.46 7.58 5.97 9.12-.02-.71.01-1.56.18-2.33l1.36-5.75s-.34-.68-.34-1.68c0-1.57.91-2.75 2.05-2.75.97 0 1.43.72 1.43 1.59 0 .97-.62 2.42-.94 3.77-.27 1.13.56 2.05 1.67 2.05 2.01 0 3.35-2.58 3.35-5.63 0-2.32-1.56-4.06-4.41-4.06-3.21 0-5.22 2.4-5.22 5.07 0 .92.27 1.57.7 2.07.2.23.22.32.15.58l-.22.89c-.07.29-.29.39-.54.28-1.49-.61-2.18-2.24-2.18-4.08 0-3.04 2.56-6.68 7.65-6.68 4.09 0 6.78 2.96 6.78 6.13 0 4.2-2.33 7.35-5.77 7.35-1.16 0-2.24-.62-2.61-1.33l-.75 2.94c-.23.85-.68 1.7-1.09 2.36.93.28 1.91.43 2.93.43 5.52 0 10-4.48 10-10S17.52 2 12 2z" />
+                    </svg>
+                </a>
+                <a href="#" aria-label="WhatsApp">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 21l1.65-3.8a9 9 0 113.15 2.85L3 21z" />
+                        <path
+                            d="M9 10a1.5 1.5 0 001 1.5 5 5 0 002.5 2.5 1.5 1.5 0 001.5 1h.5a1.5 1.5 0 001.5-1.5v-.5a.5.5 0 00-.5-.5h-1.5a.5.5 0 00-.5.5 3 3 0 01-2-2 .5.5 0 00.5-.5V9a.5.5 0 00-.5-.5h-.5A1.5 1.5 0 009 10z" />
+                    </svg>
+                </a>
+            </div>
+            <div class="footer-bottom">&copy; 2026 TrIM. All rights reserved. Handcrafted in Lagos, Nigeria.</div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+        </svg>
+    </button>
+
+    <!-- ================================
+         JAVASCRIPT
+         ================================ -->
+    <script>
+        (function () {
+            'use strict';
+
+            /* ----- Navbar Scroll ----- */
+            var nav = document.getElementById('nav');
+            var backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', function () {
+                var scrolled = window.scrollY > 60;
+                nav.classList.toggle('scrolled', scrolled);
+                backToTop.classList.toggle('visible', window.scrollY > 600);
+            });
+
+            /* ----- Smooth Scroll ----- */
+            document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    var target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        /* Close mobile menu if open */
+                        navOverlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                        navToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+            });
+
+            /* ----- Back to Top ----- */
+            backToTop.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            /* ----- Mobile Menu ----- */
+            var navToggle = document.getElementById('navToggle');
+            var navOverlay = document.getElementById('navOverlay');
+            navToggle.addEventListener('click', function () {
+                var isActive = navOverlay.classList.toggle('active');
+                document.body.style.overflow = isActive ? 'hidden' : '';
+                this.setAttribute('aria-expanded', isActive);
+            });
+
+            /* ----- Portfolio Filter ----- */
+            var filterBtns = document.querySelectorAll('.filter-btn');
+            var portfolioItems = document.querySelectorAll('.portfolio-item');
+            filterBtns.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    filterBtns.forEach(function (b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+                    var filter = this.getAttribute('data-filter');
+                    portfolioItems.forEach(function (item) {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = '';
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'scale(0.95)';
+                            setTimeout(function () { item.style.display = 'none'; }, 300);
+                        }
+                    });
+                });
+            });
+
+            /* ----- Testimonial Dots ----- */
+            var track = document.getElementById('testimonialsTrack');
+            var dots = document.querySelectorAll('.testimonial-dot');
+            dots.forEach(function (dot) {
+                dot.addEventListener('click', function () {
+                    var idx = parseInt(this.getAttribute('data-slide'));
+                    var card = track.children[idx];
+                    if (card) {
+                        track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+                    }
+                    dots.forEach(function (d) { d.classList.remove('active'); });
+                    this.classList.add('active');
+                });
+            });
+            /* Update dots on scroll */
+            track.addEventListener('scroll', function () {
+                var scrollLeft = track.scrollLeft;
+                var cardWidth = track.children[0].offsetWidth + 24;
+                var idx = Math.round(scrollLeft / cardWidth);
+                dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+            });
+
+            /* ----- Scroll Reveal ----- */
+            if ('IntersectionObserver' in window) {
+                var observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('revealed');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+                document.querySelectorAll('.reveal, .reveal-clip').forEach(function (el) { observer.observe(el); });
+            } else {
+                document.querySelectorAll('.reveal, .reveal-clip').forEach(function (el) { el.classList.add('revealed'); });
+            }
+
+            /* ----- Contact Form (AJAX with native fallback) ----- */
+            var form = document.getElementById('contactForm');
+            var successMsg = document.getElementById('formSuccess');
+            var errorMsg = document.getElementById('formError');
+            var submitBtn = document.getElementById('formSubmit');
+            form.addEventListener('submit', function (e) {
+                /* Check honeypot */
+                if (form.querySelector('[name="_gotcha"]').value) return;
+                e.preventDefault();
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: { 'Accept': 'application/json' }
+                }).then(function (resp) {
+                    if (resp.ok) {
+                        successMsg.style.display = 'block';
+                        errorMsg.style.display = 'none';
+                        form.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                }).catch(function () {
+                    errorMsg.style.display = 'block';
+                    successMsg.style.display = 'none';
+                }).finally(function () {
+                    submitBtn.textContent = 'Send Enquiry';
+                    submitBtn.disabled = false;
+                });
+            });
+
+        })();
+    </script>
+</body>
+
+</html>
