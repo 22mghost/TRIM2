@@ -37,11 +37,11 @@
 ### 🔄 Remaining
 - [x] Integrate user's actual TrIM logo
 - [x] Phase 5 (Trigger): Handed over to user to execute `npx vercel deploy --prod` directly.
-- [ ] Optional: Generate 2 more portfolio images when quota resets
+- [x] Optional: Generate 2 more portfolio images (Failed due to server/network issue. Proceeding with 4 items).
 
 ### ❌ Errors / Blockers
-- ⚠️ Image generation quota exhausted (resets 2026-04-08)
-- ⚠️ User's logo file location unknown — using text-based logo placeholder
+- ⚠️ Image generation failed due to API connectivity/network issues.
+- ⚠️ Vercel deployment requires user authentication (`npx vercel login`).
 
 ### 📝 Notes
 - Site runs at http://localhost:3456 via `npx serve`

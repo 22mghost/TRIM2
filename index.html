@@ -504,6 +504,7 @@
         .about-text p {
             margin-bottom: 1.25rem;
             font-size: 1.05rem;
+            color: #5C3D2E;
         }
 
         .about-quote {
@@ -780,88 +781,251 @@
        11. CONTACT
        ======================================== */
         .contact {
-            background: var(--sand-light);
-            padding: 100px 80px;
+            background: transparent;
+            padding: 0;
+            overflow: hidden;
         }
 
-        .contact-grid {
+        .contact .container {
+            max-width: 100%;
+            padding: 0;
+        }
+
+        .contact-split {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 3rem;
-            margin-top: 2.5rem;
+            min-height: 100vh;
         }
 
-        .contact-info {
-            padding-top: 0;
-            margin-top: 0;
+        /* -- Dark info panel -- */
+        .contact-panel-dark {
+            background: var(--bark);
+            background-image:
+                radial-gradient(ellipse at 20% 80%, rgba(184, 151, 90, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(160, 103, 74, 0.06) 0%, transparent 50%);
+            color: var(--sand);
+            padding: clamp(3rem, 6vw, 6rem) clamp(2rem, 5vw, 5rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .contact-info h3 {
-            margin-bottom: 1rem;
+        .contact-panel-dark::before {
+            content: '';
+            position: absolute;
+            top: 3rem;
+            left: 3rem;
+            width: 60px;
+            height: 60px;
+            border-top: 1px solid var(--gold);
+            border-left: 1px solid var(--gold);
+            opacity: 0.25;
+            pointer-events: none;
         }
 
-        .contact-info p {
+        .contact-panel-dark::after {
+            content: '';
+            position: absolute;
+            bottom: 3rem;
+            right: 3rem;
+            width: 60px;
+            height: 60px;
+            border-bottom: 1px solid var(--gold);
+            border-right: 1px solid var(--gold);
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        .contact-dark-label {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
             margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-            color: #5C3D2E;
         }
 
-        .contact-detail {
+        .contact-dark-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 3.5vw, 3.25rem);
+            font-weight: 300;
+            line-height: 1.15;
+            color: var(--sand);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-dark-heading em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .contact-dark-quote {
+            font-family: var(--font-heading);
+            font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+            font-style: italic;
+            font-weight: 300;
+            color: rgba(232, 221, 208, 0.6);
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            max-width: 440px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .contact-detail-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid rgba(184, 151, 90, 0.12);
+            transition: padding-left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .contact-detail-card:last-child {
+            border-bottom: none;
+        }
+
+        .contact-detail-card:hover {
+            padding-left: 0.75rem;
+        }
+
+        .contact-detail-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            color: #5C3D2E;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(184, 151, 90, 0.1);
+            transition: background 0.3s;
         }
 
-        .contact-detail svg {
-            width: 18px;
-            height: 18px;
+        .contact-detail-card:hover .contact-detail-icon {
+            background: rgba(184, 151, 90, 0.2);
+        }
+
+        .contact-detail-icon svg {
+            width: 16px;
+            height: 16px;
+            color: var(--gold);
+        }
+
+        .contact-detail-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .contact-detail-text strong {
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(232, 221, 208, 0.45);
+        }
+
+        .contact-detail-text span {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--sand);
+            line-height: 1.5;
+        }
+
+        /* -- Light form panel -- */
+        .contact-panel-light {
+            background: var(--warm-white);
+            padding: clamp(3rem, 6vw, 6rem) clamp(2rem, 5vw, 5rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-form-label {
+            font-family: var(--font-body);
+            font-weight: 400;
+            font-size: 0.7rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
             color: var(--terracotta);
-            flex-shrink: 0;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form-heading {
+            font-family: var(--font-heading);
+            font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+            font-weight: 400;
+            line-height: 1.2;
+            color: var(--bark);
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-form-sub {
+            font-size: 0.95rem;
+            color: rgba(92, 61, 46, 0.6);
+            margin-bottom: 2.5rem;
+            max-width: 460px;
         }
 
         .contact-form {
-            background: #FAF7F2;
-            padding: 0 2.5rem 2.5rem;
+            background: transparent;
+            padding: 0;
             margin-top: 0;
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-md);
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .form-row {
             display: grid;
-            gap: 1.25rem;
-            margin-bottom: 1.25rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-group {
+            position: relative;
             display: flex;
             flex-direction: column;
-            gap: 0.4rem;
         }
 
         .form-group label {
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
-            color: #5C3D2E;
+            color: rgba(92, 61, 46, 0.5);
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .form-group:focus-within label {
+            color: var(--terracotta);
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
-            padding: 0.85rem 0;
+            padding: 0.9rem 0;
             border: none;
-            border-bottom: 1px solid #D4B896;
+            border-bottom: 1.5px solid rgba(92, 61, 46, 0.12);
             border-radius: 0;
             background: transparent;
             color: var(--bark);
             font-weight: 300;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            font-size: 1rem;
+            transition: border-color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             outline: none;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(92, 61, 46, 0.25);
         }
 
         .form-group select {
@@ -870,7 +1034,7 @@
             background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23A0674A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 0 center;
-            background-size: 1.25em;
+            background-size: 1.15em;
             padding-right: 2rem;
         }
 
@@ -878,52 +1042,105 @@
         .form-group textarea:focus,
         .form-group select:focus {
             border-bottom-color: var(--terracotta);
-            box-shadow: 0 1px 0 0 var(--terracotta);
+        }
+
+        /* Animated underline on focus */
+        .form-group::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1.5px;
+            background: var(--terracotta);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .form-group:focus-within::after {
+            transform: scaleX(1);
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
         }
 
         .form-submit {
             width: 100%;
-            padding: 1rem;
-            background: var(--terracotta);
+            padding: 1.1rem 2rem;
+            background: var(--bark);
             color: var(--warm-white);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 400;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
             border: none;
             border-radius: var(--radius-sm);
             cursor: pointer;
-            transition: background 0.3s, transform 0.3s;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .form-submit::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--terracotta);
+            transform: translateX(-101%);
+            transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .form-submit:hover::before {
+            transform: translateX(0);
         }
 
         .form-submit:hover {
-            background: var(--terracotta-hover);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(160, 103, 74, 0.25);
+        }
+
+        .form-submit span {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .form-submit svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s;
+        }
+
+        .form-submit:hover svg {
+            transform: translateX(4px);
         }
 
         .form-success,
         .form-error {
             display: none;
-            padding: 1rem;
+            padding: 1.1rem 1.5rem;
             border-radius: var(--radius-sm);
             text-align: center;
-            margin-top: 1rem;
+            margin-top: 1.25rem;
             font-size: 0.9rem;
         }
 
         .form-success {
-            background: rgba(160, 103, 74, 0.1);
+            background: rgba(160, 103, 74, 0.08);
             color: var(--terracotta);
+            border: 1px solid rgba(160, 103, 74, 0.15);
         }
 
         .form-error {
-            background: rgba(160, 80, 74, 0.1);
+            background: rgba(160, 80, 74, 0.08);
             color: #9E4A42;
+            border: 1px solid rgba(160, 80, 74, 0.15);
         }
 
         /* Honeypot */
@@ -1169,10 +1386,16 @@
                 padding: 3rem;
             }
 
-            .contact-grid {
-                grid-template-columns: 1fr 1.4fr;
-                gap: 80px;
-                align-items: start;
+            .contact-split {
+                grid-template-columns: 42% 58%;
+            }
+
+            .contact-panel-dark {
+                padding: 5rem 4rem;
+            }
+
+            .contact-panel-light {
+                padding: 5rem 4rem;
             }
 
             .form-row {
@@ -1290,13 +1513,8 @@
          ================================ -->
     <header class="hero" id="hero">
         <div class="hero-content">
-            <!--
-             <span class="hero-eyebrow reveal">Bespoke Furniture — Lagos, Nigeria</span> 
-            -->
-            <h1 class="reveal reveal-delay-1">Where Nigerian <em>Craft</em> Meets Modern Living</h1>
-            <p class="hero-desc reveal reveal-delay-2">Handcrafted from premium African hardwoods using <br>
-                centuries-old
-                techniques and contemporary design sensibility. Each piece, a legacy.</p>
+            <h1 class="reveal reveal-delay-1">Furniture That <em>Outworks</em> You</h1>
+            <p class="hero-desc reveal reveal-delay-2">We make beautiful, durable furniture from premium African hardwoods, designed for Nigerian homes, priced for Nigerian people, and built by Nigerian&nbsp;hands.</p>
             <div class="hero-btn-group reveal reveal-delay-3">
                 <a href="#contact" class="nav-cta">
                     Work With Us
@@ -1352,19 +1570,11 @@
             <div class="about-grid">
                 <div class="about-text">
                     <span class="section-label reveal">Our Story</span>
-                    <h2 class="section-heading reveal reveal-delay-1">The Art of Nigerian&nbsp;Craft</h2>
-                    <p class="reveal reveal-delay-2">Every piece of TrIM furniture tells a story — of ancient forests,
-                        of hands that know the grain of iroko and sapele like old friends, of a tradition that refuses
-                        to be forgotten.</p>
-                    <p class="reveal reveal-delay-2">Founded in Lagos, TrIM was born from a simple conviction: that
-                        Nigerian craftsmanship deserves to stand alongside the finest furniture traditions in the world.
-                        Our artisans bring decades of experience to every commission, working premium hardwoods with
-                        techniques passed down through generations.</p>
-                    <blockquote class="about-quote reveal reveal-delay-3">&ldquo;The wood remembers the hands that
-                        shaped&nbsp;it.&rdquo;</blockquote>
-                    <p class="reveal reveal-delay-3">We don&rsquo;t mass-produce. We don&rsquo;t cut corners. Each piece
-                        is designed in conversation with you, shaped by master hands, and finished to a standard that
-                        will endure for decades.</p>
+                    <h2 class="section-heading reveal reveal-delay-1">Built From a Simple&nbsp;Conviction</h2>
+                    <p class="reveal reveal-delay-2">Walk into most Nigerian furniture stores, and you&rsquo;ll find one of two things: cheap imports that fall apart in two harmattan seasons, or luxury pieces priced so high they feel like they belong to someone else&rsquo;s life. We started TrIM&sup2; because we believed there was a third option. Furniture that is genuinely beautiful, genuinely durable, and genuinely within&nbsp;reach.</p>
+                    <p class="reveal reveal-delay-2">We build from premium African hardwoods &mdash; iroko, sapele, walnut &mdash; materials that have been growing on this continent for decades before they reach our workshop. We use traditional joinery techniques passed down through generations, combined with contemporary design that fits how Nigerians actually live today. Not how a European catalogue imagines we live. How we actually&nbsp;live.</p>
+                    <blockquote class="about-quote reveal reveal-delay-3">&ldquo;The wood remembers the hands that shaped&nbsp;it.&rdquo;</blockquote>
+                    <p class="reveal reveal-delay-3">But TrIM&sup2; was never just about furniture. From the beginning we believed that the greatest resource in Nigerian craft is the young person who hasn&rsquo;t been given a chance to develop a skill yet. Every commission we take funds a training seat. Every table we build teaches someone how to build the next one. That is the company we are building &mdash; one piece at a&nbsp;time.</p>
                 </div>
                 <div class="about-image reveal-clip">
                     <img src="assets/images/about.png"
@@ -1439,32 +1649,31 @@
          ================================ -->
     <section class="section process" id="process">
         <div class="container">
-            <div style="text-align: center;">
-                <span class="section-label reveal">How We Work</span>
-                <h2 class="section-heading reveal reveal-delay-1">Your Vision, Our&nbsp;Hands</h2>
+            <div style="text-align: center; max-width: 640px; margin: 0 auto;">
+                <span class="section-label reveal">The TrIM&sup2; Way</span>
+                <h2 class="section-heading reveal reveal-delay-1">Good Furniture.<br>Honest Process.<br>Real&nbsp;People.</h2>
+                <p class="section-subtitle reveal reveal-delay-2" style="margin: 1.25rem auto 0;">We don&rsquo;t have a complicated system. We have a simple promise &mdash; show up, listen properly, build well, and never cut a corner the client can&rsquo;t&nbsp;see.</p>
             </div>
             <div class="process-grid">
                 <div class="process-step reveal">
                     <div class="process-number">01</div>
-                    <h3>Design</h3>
-                    <p>We begin with your vision. Through careful consultation, we sketch, refine, and perfect every
-                        detail — from proportions to joinery, from timber selection to finish.</p>
+                    <h3>Design With You</h3>
+                    <p>We begin every project with a real conversation. Not a form, not a price list. We visit your space, ask how you actually use it, and design around your life &mdash; not around what&rsquo;s easiest for us to make. No two commissions leave our workshop looking the&nbsp;same.</p>
                     <div class="process-line"></div>
                 </div>
                 <div class="process-step reveal reveal-delay-1">
                     <div class="process-number">02</div>
-                    <h3>Craft</h3>
-                    <p>Our workshop comes alive. Master artisans shape premium Nigerian hardwoods — iroko, sapele,
-                        mahogany — using time-honoured techniques and modern precision tools.</p>
+                    <h3>Made</h3>
+                    <p>Every piece is cut, joined, finished, and inspected here. By Nigerian hands. With Nigerian wood. We don&rsquo;t outsource, we don&rsquo;t import parts, and we don&rsquo;t rush. When your piece is being built, we&rsquo;ll send you progress updates. You can visit. Most clients&nbsp;do.</p>
                     <div class="process-line"></div>
                 </div>
                 <div class="process-step reveal reveal-delay-2">
                     <div class="process-number">03</div>
-                    <h3>Deliver</h3>
-                    <p>Each completed piece undergoes rigorous quality inspection before being delivered to your space
-                        with white-glove care and full installation support.</p>
+                    <h3>Delivered &amp; Placed</h3>
+                    <p>We don&rsquo;t leave your furniture at the gate. We bring it in, place it where it belongs, and don&rsquo;t leave until it looks like it was always there. Delivery includes full installation and a care guide so the piece lasts as long as it should &mdash; which is&nbsp;decades.</p>
                 </div>
             </div>
+            <p class="reveal" style="text-align: center; max-width: 600px; margin: 3rem auto 0; font-family: var(--font-heading); font-size: clamp(1.1rem, 1.5vw, 1.3rem); font-style: italic; font-weight: 300; color: rgba(92, 61, 46, 0.6); line-height: 1.7;">And while we&rsquo;re doing all of this &mdash; every commission, every delivery, every satisfied client &mdash; we are simultaneously building something much&nbsp;bigger.</p>
         </div>
     </section>
 
@@ -1508,95 +1717,115 @@
     <!-- ================================
          CONTACT
          ================================ -->
-    <section class="section contact" id="contact">
+    <section class="contact" id="contact">
         <div class="container">
-            <span class="section-label reveal">Get In Touch</span>
-            <h2 class="section-heading reveal reveal-delay-1">Begin Your&nbsp;Project</h2>
-            <p class="section-subtitle reveal reveal-delay-2">Every great space starts with a conversation. Tell us
-                about your vision, and we&rsquo;ll bring it to life.</p>
-            <div class="contact-grid">
-                <div class="contact-info reveal">
-                    <h3>Let&rsquo;s Talk</h3>
-                    <p>Whether you have a detailed brief or just the seed of an idea, we&rsquo;d love to hear from you.
-                        Our design team responds to every enquiry within 24&nbsp;hours.</p>
-                    <div class="contact-detail">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                        <span>hello@trimfurniture.com</span>
-                    </div>
-                    <div class="contact-detail">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path
-                                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11 11 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                        </svg>
-                        <span>+234 (0) 812 345 6789</span>
-                    </div>
-                    <div class="contact-detail">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        <span>Victoria Island, Lagos, Nigeria</span>
+            <div class="contact-split">
+                <!-- Dark Panel — Brand & Contact Info -->
+                <div class="contact-panel-dark reveal">
+                    <div class="contact-dark-label">Get In Touch</div>
+                    <h2 class="contact-dark-heading">Every great space begins with a <em>conversation</em></h2>
+                    <p class="contact-dark-quote">&ldquo;Whether you have a detailed brief or just the seed of an idea, we&rsquo;d love to hear from you. Our design team responds within 24&nbsp;hours.&rdquo;</p>
+                    <div class="contact-details">
+                        <div class="contact-detail-card">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <strong>Email</strong>
+                                <span>trim2africa@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail-card">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11 11 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <strong>Phone</strong>
+                                <span>08168033023</span>
+                            </div>
+                        </div>
+                        <div class="contact-detail-card">
+                            <div class="contact-detail-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                </svg>
+                            </div>
+                            <div class="contact-detail-text">
+                                <strong>Studio</strong>
+                                <span>Along St-Micheals Anglican primary school, Araromi, Oyo, Oyo State.</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/xlgonyza"
-                    method="POST">
-                    <!-- Honeypot for spam prevention -->
-                    <input type="text" name="_gotcha" class="ohnohoney" tabindex="-1" autocomplete="off">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required placeholder="Your full name"
-                                autocomplete="name">
+
+                <!-- Light Panel — Enquiry Form -->
+                <div class="contact-panel-light">
+                    <div class="contact-form-label reveal">Start Your Project</div>
+                    <h3 class="contact-form-heading reveal reveal-delay-1">Send Us an Enquiry</h3>
+                    <p class="contact-form-sub reveal reveal-delay-2">Tell us about your vision and we&rsquo;ll bring it to life.</p>
+                    <form class="contact-form reveal reveal-delay-3" id="contactForm" action="https://formspree.io/f/xlgonyza" method="POST">
+                        <!-- Honeypot for spam prevention -->
+                        <input type="text" name="_gotcha" class="ohnohoney" tabindex="-1" autocomplete="off">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required placeholder="Your full name" autocomplete="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required placeholder="your@email.com" autocomplete="email">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required placeholder="your@email.com"
-                                autocomplete="email">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone (Optional)</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+234..." autocomplete="tel">
+                            </div>
+                            <div class="form-group">
+                                <label for="project_type">Project Type *</label>
+                                <select id="project_type" name="project_type" required>
+                                    <option value="" disabled selected>Select a category</option>
+                                    <option value="Dining">Dining</option>
+                                    <option value="Living">Living</option>
+                                    <option value="Bedroom">Bedroom</option>
+                                    <option value="Office">Office</option>
+                                    <option value="Custom Piece">Custom Piece</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="phone">Phone (Optional)</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+234..." autocomplete="tel">
+                        <div class="form-row">
+                            <div class="form-group" style="grid-column: 1 / -1;">
+                                <label for="budget">Budget Range (Optional)</label>
+                                <select id="budget" name="budget">
+                                    <option value="" disabled selected>Select a range</option>
+                                    <option value="Under ₦500K">Under ₦500K</option>
+                                    <option value="₦500K – ₦2M">₦500K – ₦2M</option>
+                                    <option value="₦2M – ₦5M">₦2M – ₦5M</option>
+                                    <option value="₦5M+">₦5M+</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="project_type">Project Type *</label>
-                            <select id="project_type" name="project_type" required>
-                                <option value="" disabled selected>Select a category</option>
-                                <option value="Dining">Dining</option>
-                                <option value="Living">Living</option>
-                                <option value="Bedroom">Bedroom</option>
-                                <option value="Office">Office</option>
-                                <option value="Custom Piece">Custom Piece</option>
-                            </select>
+                        <div class="form-group" style="margin-bottom: 1.75rem;">
+                            <label for="message">Tell Us About Your Project *</label>
+                            <textarea id="message" name="message" required placeholder="Describe your vision — materials, dimensions, style, timeline..."></textarea>
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group" style="grid-column: 1 / -1;">
-                            <label for="budget">Budget Range (Optional)</label>
-                            <select id="budget" name="budget">
-                                <option value="" disabled selected>Select a range</option>
-                                <option value="Under ₦500K">Under ₦500K</option>
-                                <option value="₦500K – ₦2M">₦500K – ₦2M</option>
-                                <option value="₦2M – ₦5M">₦2M – ₦5M</option>
-                                <option value="₦5M+">₦5M+</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group" style="margin-bottom: 1.5rem;">
-                        <label for="message">Tell Us About Your Project *</label>
-                        <textarea id="message" name="message" required
-                            placeholder="Describe your vision — materials, dimensions, style, timeline..."></textarea>
-                    </div>
-                    <button type="submit" class="form-submit" id="formSubmit">Send Enquiry</button>
-                    <div class="form-success" id="formSuccess">Thank you! Your enquiry has been received. We&rsquo;ll be
-                        in touch within 24 hours.</div>
-                    <div class="form-error" id="formError">Something went wrong. Please try again or email us directly.
-                    </div>
-                </form>
+                        <button type="submit" class="form-submit" id="formSubmit">
+                            <span>
+                                Send Enquiry
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M5 12h14M12 5l7 7-7 7" />
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="form-success" id="formSuccess">Thank you! Your enquiry has been received. We&rsquo;ll be in touch within 24 hours.</div>
+                        <div class="form-error" id="formError">Something went wrong. Please try again or email us directly.</div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -1607,22 +1836,24 @@
     <footer class="footer" id="footer">
         <div class="container footer-inner">
             <div class="footer-logo"><img src="assets/images/Logo Dark.png" alt="TrIM logo"></div>
-            <div class="footer-tagline">Nigerian Craft Furniture</div>
+            <div class="footer-tagline">
+                Nigerian Craft Furniture<br>
+                <a href="tel:08168033023" style="color: inherit; text-decoration: none; display: inline-block; margin-top: 0.5rem; letter-spacing: 0.1em; transition: color 0.3s;" onmouseover="this.style.color='#A0674A'" onmouseout="this.style.color='inherit'">08168033023</a>
+            </div>
             <div class="footer-social">
-                <a href="#" aria-label="Instagram">
+                <a href="https://www.instagram.com/trim2.africa?igsh=MWUzNDR2NHhza2lxag==" aria-label="Instagram" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <rect x="2" y="2" width="20" height="20" rx="5" />
                         <circle cx="12" cy="12" r="5" />
                         <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
                     </svg>
                 </a>
-                <a href="#" aria-label="Pinterest">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12c0 4.08 2.46 7.58 5.97 9.12-.02-.71.01-1.56.18-2.33l1.36-5.75s-.34-.68-.34-1.68c0-1.57.91-2.75 2.05-2.75.97 0 1.43.72 1.43 1.59 0 .97-.62 2.42-.94 3.77-.27 1.13.56 2.05 1.67 2.05 2.01 0 3.35-2.58 3.35-5.63 0-2.32-1.56-4.06-4.41-4.06-3.21 0-5.22 2.4-5.22 5.07 0 .92.27 1.57.7 2.07.2.23.22.32.15.58l-.22.89c-.07.29-.29.39-.54.28-1.49-.61-2.18-2.24-2.18-4.08 0-3.04 2.56-6.68 7.65-6.68 4.09 0 6.78 2.96 6.78 6.13 0 4.2-2.33 7.35-5.77 7.35-1.16 0-2.24-.62-2.61-1.33l-.75 2.94c-.23.85-.68 1.7-1.09 2.36.93.28 1.91.43 2.93.43 5.52 0 10-4.48 10-10S17.52 2 12 2z" />
+                <a href="https://www.facebook.com/share/1GWfzh15dG" aria-label="Facebook" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                     </svg>
                 </a>
-                <a href="#" aria-label="WhatsApp">
+                <a href="https://wa.me/2348168033023" aria-label="WhatsApp" target="_blank" rel="noopener">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M3 21l1.65-3.8a9 9 0 113.15 2.85L3 21z" />
                         <path
@@ -1754,7 +1985,9 @@
                 /* Check honeypot */
                 if (form.querySelector('[name="_gotcha"]').value) return;
                 e.preventDefault();
-                submitBtn.textContent = 'Sending...';
+                var btnSpan = submitBtn.querySelector('span');
+                var originalHTML = btnSpan.innerHTML;
+                btnSpan.textContent = 'Sending...';
                 submitBtn.disabled = true;
                 fetch(form.action, {
                     method: 'POST',
@@ -1772,7 +2005,7 @@
                     errorMsg.style.display = 'block';
                     successMsg.style.display = 'none';
                 }).finally(function () {
-                    submitBtn.textContent = 'Send Enquiry';
+                    btnSpan.innerHTML = originalHTML;
                     submitBtn.disabled = false;
                 });
             });

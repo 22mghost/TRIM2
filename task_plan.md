@@ -31,7 +31,7 @@
 - [x] Generate hero image
 - [x] Generate about/workshop image
 - [x] Generate 4 portfolio images
-- [ ] Generate 2 remaining portfolio images (quota exhausted)
+- [x] Generate 2 remaining portfolio images (skipped due to network API error)
 - [x] Add scroll-triggered animations (IntersectionObserver)
 - [x] Add hover micro-animations (portfolio, nav, buttons)
 - [x] Responsive testing (verified at desktop)
