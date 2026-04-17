@@ -8,7 +8,7 @@
     <title>TrIM - Nigerian Craft Furniture</title>
     <meta name="description"
         content="TrIM creates bespoke furniture handcrafted in Lagos, Nigeria. Premium hardwoods, centuries-old techniques, contemporary design. Begin your project today.">
-    
+
     <meta property="og:title" content="TrIM — Nigerian Craft Furniture">
     <meta property="og:description"
         content="Bespoke furniture handcrafted in Lagos with centuries-old techniques and contemporary design.">
@@ -22,7 +22,14 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script>
+        // Global error listener to visibly highlight broken images (must be in head to catch early errors)
+        document.addEventListener('error', function(e) {
+            if (e.target && e.target.tagName && e.target.tagName.toLowerCase() === 'img') {
+                e.target.classList.add('img-broken');
+            }
+        }, true);
+    </script>
 </head>
 
 <body>
@@ -32,7 +39,7 @@
     <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
         <div class="container nav-inner">
             <a href="#" class="nav-logo" aria-label="TrIM Home"><img referrerpolicy="no-referrer"
-                    src="assets/images/Logo brown .png" alt="TrIM logo"></a>
+                    src="assets/images/Logo-brown.png" alt="TrIM logo"></a>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#portfolio">Portfolio</a>
@@ -486,7 +493,7 @@
          ================================ -->
     <footer class="footer" id="footer">
         <div class="container footer-inner">
-            <div class="footer-logo"><img referrerpolicy="no-referrer" src="assets/images/Logo Dark.png"
+            <div class="footer-logo"><img referrerpolicy="no-referrer" src="assets/images/Logo-dark.png"
                     alt="TrIM logo"></div>
             <div class="footer-tagline">
                 Nigerian Craft Furniture<br>
