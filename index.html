@@ -8,6 +8,14 @@
     <title>TrIM - Nigerian Craft Furniture</title>
     <meta name="description"
         content="TrIM creates bespoke furniture handcrafted in Lagos, Nigeria. Premium hardwoods, centuries-old techniques, contemporary design. Begin your project today.">
+    <script>
+        // Global error listener to visibly highlight broken images
+        document.addEventListener('error', function(e) {
+            if (e.target && e.target.tagName && e.target.tagName.toLowerCase() === 'img') {
+                e.target.classList.add('img-broken');
+            }
+        }, true);
+    </script>
     <meta property="og:title" content="TrIM — Nigerian Craft Furniture">
     <meta property="og:description"
         content="Bespoke furniture handcrafted in Lagos with centuries-old techniques and contemporary design.">
@@ -53,30 +61,33 @@
             max-width: 100%;
             height: auto;
             display: block;
-            position: relative;
-            min-height: 1px; /* Ensures pseudo-element has space if intrinsic dimensions collapse */
         }
 
-        /* Broken image styling: this pseudo-element only renders when the image fails to load */
-        img::after {
-            content: "⚠️ Image Failed to Load: " attr(alt);
+        /* Broken image styling applied via JS onerror */
+        .img-broken {
+            position: relative;
+            background-color: #fbecec !important;
+            border: 2px dashed #c93a3a !important;
+            min-height: 120px !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-broken::after {
+            content: "⚠️ Image Failed: " attr(alt);
+            position: absolute;
+            inset: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            min-height: 120px;
-            background-color: #fbecec;
-            color: #c93a3a;
-            border: 2px dashed #c93a3a;
-            font-family: inherit;
-            font-size: 0.9rem;
             text-align: center;
             padding: 1rem;
-            box-sizing: border-box;
+            color: #c93a3a;
+            background: #fbecec;
+            font-family: inherit;
+            font-size: 0.85rem;
+            line-height: 1.4;
             z-index: 10;
         }
 
