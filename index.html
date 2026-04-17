@@ -2532,24 +2532,26 @@
             /* ----- Testimonial Dots ----- */
             var track = document.getElementById('testimonialsTrack');
             var dots = document.querySelectorAll('.testimonial-dot');
-            dots.forEach(function (dot) {
-                dot.addEventListener('click', function () {
-                    var idx = parseInt(this.getAttribute('data-slide'));
-                    var card = track.children[idx];
-                    if (card) {
-                        track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
-                    }
-                    dots.forEach(function (d) { d.classList.remove('active'); });
-                    this.classList.add('active');
+            if (track) {
+                dots.forEach(function (dot) {
+                    dot.addEventListener('click', function () {
+                        var idx = parseInt(this.getAttribute('data-slide'));
+                        var card = track.children[idx];
+                        if (card) {
+                            track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+                        }
+                        dots.forEach(function (d) { d.classList.remove('active'); });
+                        this.classList.add('active');
+                    });
                 });
-            });
-            /* Update dots on scroll */
-            track.addEventListener('scroll', function () {
-                var scrollLeft = track.scrollLeft;
-                var cardWidth = track.children[0].offsetWidth + 24;
-                var idx = Math.round(scrollLeft / cardWidth);
-                dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
-            });
+                /* Update dots on scroll */
+                track.addEventListener('scroll', function () {
+                    var scrollLeft = track.scrollLeft;
+                    var cardWidth = track.children[0].offsetWidth + 24;
+                    var idx = Math.round(scrollLeft / cardWidth);
+                    dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+                });
+            }
 
             /* ----- Scroll Reveal ----- */
             if ('IntersectionObserver' in window) {
