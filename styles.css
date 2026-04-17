@@ -538,6 +538,7 @@
             overflow: visible;
             border-radius: var(--radius-md);
             z-index: 1;
+            min-height: 400px;
         }
 
         .about-image img {
@@ -616,6 +617,7 @@
             border-radius: var(--radius-md);
             cursor: pointer;
             transition: transform var(--transition);
+            min-height: 320px;
         }
 
         .portfolio-item:hover {
@@ -1379,6 +1381,7 @@
 
             .portfolio-item:first-child {
                 grid-row: span 2;
+                min-height: 660px;
             }
 
             .portfolio-item:first-child img {
@@ -1438,8 +1441,16 @@
                 grid-template-columns: repeat(3, 1fr);
             }
 
+            .portfolio-item {
+                min-height: 380px;
+            }
+
             .portfolio-item img {
                 height: 380px;
+            }
+
+            .portfolio-item:first-child {
+                min-height: 780px;
             }
 
             .portfolio-item:first-child img {
@@ -1788,4 +1799,42 @@
             .modal-carousel-track iframe {
                 border-radius: 8px 0 0 8px;
             }
+        }
+
+        /* ========================================
+           20. GLOBAL IMAGE CONTAINERS
+           ======================================== */
+        .portfolio-card .card-image,
+        .portfolio-card-img-wrap,
+        .card-thumbnail {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            display: block;
+            background: #E8DDD0;
+        }
+
+        .portfolio-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .story-image-wrap,
+        .about-img-container,
+        .our-story img {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            display: block;
+            background: #E8DDD0;
+        }
+
+        .story-image-wrap img,
+        .about-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
