@@ -240,19 +240,30 @@
     }
 
     /* ----- Scroll Reveal ----- */
-    if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('.reveal, .reveal-clip').forEach(function (el) { observer.observe(el); });
-    } else {
-        document.querySelectorAll('.reveal, .reveal-clip').forEach(function (el) { el.classList.add('revealed'); });
-    }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+
+                // 1. Add the class to start the animation
+                el.classList.add('revealed');
+
+                // 2. THE FIX: This single line forces Chrome/Safari to 
+                // "wake up" and actually paint the image pixels.
+                void el.offsetWidth;
+
+                observer.unobserve(el);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    // Start watching your elements
+    document.querySelectorAll('.reveal, .reveal-clip').forEach(el => observer.observe(el));
+
+
 
     /* ----- Contact Form (AJAX with native fallback) ----- */
     var form = document.getElementById('contactForm');
