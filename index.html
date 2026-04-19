@@ -505,9 +505,18 @@
                     </svg>
                 </a>
             </div>
-            <div class="footer-bottom">&copy; 2026 TrIM. All rights reserved. Handcrafted in Lagos, Nigeria.</div>
+            <div class="footer-bottom">&copy; 2026 TrIM. All rights reserved.</div>
         </div>
     </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.link/eej14d" class="floating-whatsapp" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 21l1.65-3.8a9 9 0 113.15 2.85L3 21z" />
+            <path d="M9 10a1.5 1.5 0 001 1.5 5 5 0 002.5 2.5 1.5 1.5 0 001.5 1h.5a1.5 1.5 0 001.5-1.5v-.5a.5.5 0 00-.5-.5h-1.5a.5.5 0 00-.5.5 3 3 0 01-2-2 .5.5 0 00.5-.5V9a.5.5 0 00-.5-.5h-.5A1.5 1.5 0 009 10z" />
+        </svg>
+        <span>Chat with us</span>
+    </a>
 
     <!-- Back to Top -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
@@ -519,8 +528,8 @@
     <!-- Portfolio Modal -->
     <div id="portfolioModal" class="portfolio-modal" aria-hidden="true" role="dialog">
         <div class="portfolio-modal-overlay"></div>
+        <button class="portfolio-modal-close" aria-label="Close modal">&times;</button>
         <div class="portfolio-modal-content">
-            <button class="portfolio-modal-close" aria-label="Close modal">&times;</button>
             <div class="portfolio-modal-layout">
                 <div class="portfolio-modal-left" id="portfolioModalLeft">
                     <div class="modal-carousel-track" id="modalCarouselTrack"></div>
@@ -537,6 +546,7 @@
                     <div class="modal-carousel-dots" id="modalCarouselDots"></div>
                 </div>
                 <div class="portfolio-modal-right">
+                    <button class="portfolio-modal-mobile-back" id="portfolioModalMobileBack" aria-label="Back to portfolio">&larr; Back</button>
                     <div id="portfolioModalCategory" class="portfolio-modal-eyebrow"></div>
                     <h3 id="portfolioModalTitle" class="portfolio-modal-title"></h3>
                     <div class="portfolio-modal-materials"><span class="materials-label">Materials —&nbsp;</span><span

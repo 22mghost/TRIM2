@@ -1246,6 +1246,48 @@ p {
     color: rgba(232, 221, 208, 0.4);
 }
 
+.floating-whatsapp {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #25D366;
+    color: #FAF7F2;
+    padding: 0.75rem 1.25rem 0.75rem 1.1rem;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    box-shadow: var(--shadow-md);
+    z-index: 900;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.35s;
+    text-decoration: none;
+}
+
+.floating-whatsapp:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    background: #20BA56;
+}
+
+.floating-whatsapp svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 767px) {
+    .floating-whatsapp {
+        bottom: 1.5rem;
+        left: 1.5rem;
+        padding: 0.7rem 1.1rem 0.7rem 0.9rem;
+        font-size: 0.8rem;
+    }
+}
+
 .back-to-top {
     position: fixed;
     bottom: 2rem;
@@ -1560,16 +1602,22 @@ p {
 }
 
 .portfolio-modal-close {
-    position: absolute;
-    top: 1rem;
+    position: fixed;
+    top: 1.5rem;
     right: 1.5rem;
-    font-size: 2rem;
-    color: #5C3D2E;
-    z-index: 10;
+    font-size: 2.5rem;
+    color: #FAF7F2;
+    z-index: 2010;
     line-height: 1;
     cursor: pointer;
     background: none;
     border: none;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.portfolio-modal-close:hover {
+    opacity: 1;
 }
 
 .portfolio-modal-layout {
@@ -1593,6 +1641,27 @@ p {
     padding: 32px 24px;
     display: flex;
     flex-direction: column;
+}
+
+.portfolio-modal-mobile-back {
+    display: none;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    text-align: left;
+    background: none;
+    border: none;
+    align-self: flex-start;
+}
+
+@media (max-width: 767px) {
+    .portfolio-modal-mobile-back {
+        display: inline-block;
+    }
 }
 
 .portfolio-modal-eyebrow {
@@ -1781,8 +1850,8 @@ p {
 
 .modal-carousel-counter {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    bottom: 1.5rem;
+    left: 1rem;
     background: rgba(26, 20, 16, 0.6);
     color: #FAF7F2;
     font-size: 0.7rem;

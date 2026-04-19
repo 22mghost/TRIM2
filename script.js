@@ -103,6 +103,34 @@
         updateCarousel();
     });
 
+    /* ----- Modal Swipe Gestures ----- */
+    var touchStartX = 0;
+    var touchEndX = 0;
+
+    modalTrack.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, {passive: true});
+
+    modalTrack.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, {passive: true});
+
+    function handleSwipe() {
+        if (carouselMedia.length <= 1) return;
+        var swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+            /* Swipe left (next) */
+            currentCarouselIndex = (currentCarouselIndex + 1) % carouselMedia.length;
+            updateCarousel();
+        }
+        if (touchEndX > touchStartX + swipeThreshold) {
+            /* Swipe right (prev) */
+            currentCarouselIndex = (currentCarouselIndex - 1 + carouselMedia.length) % carouselMedia.length;
+            updateCarousel();
+        }
+    }
+
     function openModal(item) {
         var img = item.querySelector('img');
         var category = item.getAttribute('data-category');
@@ -194,6 +222,8 @@
         });
     }
 
+    var modalMobileBack = document.getElementById('portfolioModalMobileBack');
+
     portfolioItems.forEach(function (item) {
         item.addEventListener('click', function () {
             openModal(this);
@@ -202,6 +232,7 @@
 
     if (modalClose) modalClose.addEventListener('click', closeModal);
     if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
+    if (modalMobileBack) modalMobileBack.addEventListener('click', closeModal);
 
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
