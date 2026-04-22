@@ -1869,3 +1869,27 @@ p {
         border-radius: 8px 0 0 8px;
     }
 }
+
+/* ========================================
+       20. MOBILE PORTFOLIO INDICATOR
+       ======================================== */
+@media (max-width: 768px) {
+    .portfolio-item::after {
+        content: "Tap to view";
+        position: absolute;
+        bottom: 1.25rem;
+        right: 1.25rem;
+        background: var(--terracotta);
+        color: var(--warm-white);
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 0.4rem 0.8rem;
+        border-radius: 100px;
+        z-index: 10;
+        pointer-events: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+}
